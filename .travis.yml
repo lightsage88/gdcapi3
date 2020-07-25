@@ -1,2 +1,10 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: KQjT3EMBsdOyS3wyRzer54vTmWdv+E1EP2nuYq+aycUMAs6YV6tGGpWND+TrDLHUJfRiGt4TGMiGxT794i62mvr5qA6PO5qITBjwwb+MNBYqpODWwiFBh3znGhYUeAL8RrtxDao3BuEgi5q4faAYRidZOae7EiVatPQX/ZqdNG1c25gqzJSNSoMw1sTz3QVQr2cyCOuWOJ/G5ixhdioO4gIrFVp0AL/0MvLlnpkFgmpbMwafVpI13DWQYFF3/kRLqXkjV4HJhgUKsF6EcEh6pISbSUi7K3F+XOOhSvPK9EPMy9J5g/yIwqkTitYvIPJk990OYZ5wBg8q018fpfSWWoniS7Z/BhLCWKzML3b7d6ttZPm8gP6gZISbtQnG1kZs4T1VoF4zEXg59bfLZgShLLDSctqiG48Xeu7W4CMrJPstUvAkg7Z9T/383lWc+8GHiYgTQvold4/J4BBPUxg/67ePyn0z/aS2ovUVcNusFFYH1tCK+hk+aGfQEiPHDjMLlXrbI21rTg+tzDQ2FlS1bToNC1XrLROUP94zi8hwi2Hxbc0FDCKsonRB9D/oRCymTeX0azbX4TZ6asaEZip20AZ5airtu/ySNf7S/AgSX5v5yumCZ2cp8h/U9vdFky6nv4WGNQXMnf4x0bl+P4aMs5AsfVut9OmQO8kqYoHcGDo=
+  app: floating-gorge-12561
+  on:
+    repo: lightsage88/gdcapi3
+  skip_cleanup: 'true'

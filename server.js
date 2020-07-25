@@ -30,10 +30,10 @@ app.use('/api/users', usersRouter)
 app.use('/api/cats', catsRouter)
 app.use('/api/auth', authRouter)
 
-// mongoose.connect(DATABASE_URL, {useNewUrlParser:true})
-// const db = mongoose.connection
-// db.on('error', (error) => console.error(error))
-// db.once('open', () => console.log('connected to database'))
+mongoose.connect(DATABASE_URL, {useNewUrlParser:true})
+const db = mongoose.connection
+db.on('error', (error) => console.error(error))
+db.once('open', () => console.log('connected to database'))
 app.use(express.json())
 
 app.listen(PORT, () => {
@@ -54,44 +54,46 @@ app.use(logErrors);
 let server;
 
 
-function runServer(databaseUrl, port = PORT) {
-    return new Promise((resolve, reject)=> {
-        mongoose.connect(
-            databaseUrl,
-            {useNewUrlParser: true},
-            err => {
-                if(err) {
-                    return reject(err);
-                }
-                server = app.listen(port, () => {
-                    console.log(`Your app is listening on port ${port}`);
-                    resolve();
-                })
-                .on('error', err => {
-                    mongoose.disconnect();
-                    reject(err);
-                });
-            }
-        );
-    });
-}
+// function runServer(databaseUrl, port = PORT) {
+//     return new Promise((resolve, reject)=> {
+//         mongoose.connect(
+//             databaseUrl,
+//             {useNewUrlParser: true},
+//             err => {
+//                 if(err) {
+//                     return reject(err);
+//                 }
+//                 server = app.listen(port, () => {
+//                     console.log(`Your app is listening on port ${port}`);
+//                     resolve();
+//                 })
+//                 .on('error', err => {
+//                     mongoose.disconnect();
+//                     reject(err);
+//                 });
+//             }
+//         );
+//     });
+// }
 
-function closeServer() {
-    return mongoose.disconnect().then(()=> {
-        return new Promise((resolve, reject) => {
-            console.log('closing the server');
-            server.close(err => {
-                if(err) {
-                    return reject(err);
-                }
-                resolve();
-            });
-        });
-    });
-}
+// function closeServer() {
+//     return mongoose.disconnect().then(()=> {
+//         return new Promise((resolve, reject) => {
+//             console.log('closing the server');
+//             server.close(err => {
+//                 if(err) {
+//                     return reject(err);
+//                 }
+//                 resolve();
+//             });
+//         });
+//     });
+// }
 
-if(require.main === module) {
-  runServer(DATABASE_URL).catch(err => console.error(err));
-}
+// if(require.main === module) {
+//   runServer(DATABASE_URL).catch(err => console.error(err));
+// }
 
-module.exports = {app, runServer, closeServer}
+// module.exports = {app, runServer, closeServer}
+
+module.exports = {app}

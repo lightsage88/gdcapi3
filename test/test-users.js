@@ -16,11 +16,11 @@ const should = chai.should;
 chai.use(chaiHttp);
 
 before(()=>{
-    return runServer(TEST_DATABASE_URL);
+    // return runServer(TEST_DATABASE_URL);
 });
 
 after(()=>{
-    return closeServer();
+    // return closeServer();
 });
 
 beforeEach(()=>{

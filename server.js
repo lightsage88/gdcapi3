@@ -10,7 +10,8 @@ const passport = require('passport')
 const morgan = require('morgan')
 
 const {localStrategy, jwtStrategy} = require('./routes/strategies')
-const {PORT} = require('./config')
+const { PORT, DATABASE_URL, JWT_SECRET, JWT_EXPIRY, PETFINDER_CLIENT_ID, PETFINDER_CLIENT_SECRET} = require('./config');
+
 mongoose.Promise = global.Promise;
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
@@ -29,14 +30,14 @@ app.use('/api/users', usersRouter)
 app.use('/api/cats', catsRouter)
 app.use('/api/auth', authRouter)
 
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser:true})
+mongoose.connect(DATABASE_URL, {useNewUrlParser:true})
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('connected to database'))
 app.use(express.json())
 
-app.listen(process.env.PORT, () => {
-  console.log(`Your server started on port ${process.env.PORT}`)
+app.listen(PORT, () => {
+  console.log(`Your server started on port ${PORT}`)
 })
 
 const logErrors = (err, req, res, next) => {

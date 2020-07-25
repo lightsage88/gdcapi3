@@ -38,3 +38,4 @@ app.listen(3000, () => {
   console.log(`Your server started on port ${process.env.PORT}`)
 })
 
+module.exports = {app, runServer, closeServer};

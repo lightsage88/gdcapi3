@@ -39,6 +39,17 @@ app.listen(3000, () => {
   console.log(`Your server started on port ${process.env.PORT}`)
 })
 
+const logErrors = (err, req, res, next) => {
+  console.error(err);
+  return res.status(500).json({Error: 'Something went awry'});
+
+}
+
+
+
+
+app.use(logErrors);
+
 let server;
 
 

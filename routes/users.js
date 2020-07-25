@@ -492,8 +492,6 @@ router.post('/deleteAccount', (req,res) => {
     return User.findOne({username})
     .then(_user => {
         user = _user
-
-
         return user.password;
     })
     .then(async hash => {

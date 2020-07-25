@@ -1,6 +1,6 @@
 exports.PORT = process.env.PORT || 8000;
-exports.DATABASE_URL = process.env.DATABASE_URL ||"mongodb://localhost/local-gdc2api"
-exports.TEST_DATABASE_URL = process.env.TEST_DATABASE_URL || "mongodb://localhost/gdc2DB";
+exports.DATABASE_URL = process.env.DATABASE_URL ||"mongodb://localhost/local-gdc2api";
+exports.TEST_DATABASE_URL = process.env.TEST_DATABASE_URL || "mongodb://localhost/test-gdc2api";
 exports.PETFINDER_TOKEN = process.env.PETFINDER_TOKEN || '';
 exports.PETFINDER_CLIENT_SECRET = process.env.PETFINDER_CLIENT_SECRET || '';
 exports.PETFINDER_CLIENT_ID = process.env.PETFINDER_CLIENT_ID || '';

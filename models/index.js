@@ -31,6 +31,9 @@ const catSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    petfinderid: {
+        type: String
+    },
     photos: {
         type: Array
     },

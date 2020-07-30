@@ -463,7 +463,7 @@ router.post('/changePassword', (req,res) => {
 
         } else {
             console.log('we got the else block');
-            newHash = hashIt(newPW);
+            newHash = await hashIt(newPW);
             user.password = newHash;
             user.save();
             return res.send({
@@ -577,7 +577,8 @@ router.post('/addCat', (req, res) => {
             name,
             photos,
             size,
-            status
+            status,
+            petfinderid: id
         });
 
 
@@ -594,6 +595,7 @@ router.post('/addCat', (req, res) => {
 });
 
 router.post('/removeCat', (req,res) => {
+    console.log('POST /removeCat running', req.body, res)
     let user;
     let {catID, username} = req.body;
     console.log('remove cat running and here are the catID and username', catID, username)
@@ -606,7 +608,7 @@ router.post('/removeCat', (req,res) => {
         console.log(user.cats)
         let newCatArray = user.cats.filter(object=>{
            console.log('cat we are investigatin rn', object)
-           return object.id !== catID
+           return object.petfinderid !== catID
         })
         console.log('pizzatime');
         console.log(user.cats);

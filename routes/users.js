@@ -255,7 +255,7 @@ let zodiacCombo = await zodiacFinder([req.body.birthday.month, req.body.birthday
     );
 
     if(nonStringField) {
-        return res.status(422).json({
+        return res.status(201).json({
             code: 422,
             reason: 'ValidationError',
             message: "Incorrect field type: expected a string",
@@ -270,10 +270,10 @@ let zodiacCombo = await zodiacFinder([req.body.birthday.month, req.body.birthday
     const nonTrimmedField = explicitlyTrimmedFields.find(field => req.body[field].trim() !== req.body[field]);
 
     if(nonTrimmedField) {
-        return res.status(422).json({
+        return res.status(201).json({
             code: 422,
             reason: 'ValidationError',
-            message: "Cannot start or end with a whitespace",
+            message: "The username and password fields cannot start or end with a whitespace",
             location: nonTrimmedField
         });
     }
@@ -297,11 +297,11 @@ let zodiacCombo = await zodiacFinder([req.body.birthday.month, req.body.birthday
     );
 
     if(tooSmallField || tooLargeField) {
-        return res.status(422).json({
+        return res.status(201).json({
             code: 422,
             reason: 'ValidationError',
-            message: tooSmallField ? `Must be at least ${sizedFields[tooSmallField].min} characters long`
-                                : `Must be at most ${sizedFields[tooLargeField].max} characters long`,
+            message: tooSmallField ? `Your password must be at least ${sizedFields[tooSmallField].min} characters long`
+                                : `Your password must be at most ${sizedFields[tooLargeField].max} characters long`,
             location: tooSmallField || tooLargeField
         });
     }
@@ -316,12 +316,19 @@ let zodiacCombo = await zodiacFinder([req.body.birthday.month, req.body.birthday
         .countDocuments()
         .then(count => {
             if(count > 0) {
-                return Promise.reject({
-                    code: 422,
+              console.log('rage agains tthe machine')
+                return res.status(201).json({
+                  code: 422,
                     reason: 'ValidationError',
                     message: 'Username already taken',
                     location: 'username'
-                });
+                })
+                // return Promise.reject({
+                //     code: 201,
+                //     reason: 'ValidationError',
+                //     message: 'Username already taken',
+                //     location: 'username'
+                // });
             }
             return User.hashPassword(password);
         })

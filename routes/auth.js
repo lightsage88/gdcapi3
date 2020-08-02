@@ -1,7 +1,7 @@
 'use strict'
 require('dotenv').config()
-const router = express.Router()
 const express = require('express')
+const router = express.Router()
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const bodyParser = require('body-parser')

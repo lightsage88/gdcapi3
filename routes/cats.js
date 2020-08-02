@@ -1,7 +1,7 @@
 let token
 const axios = require('axios')
-const router = express.Router()
 const express = require('express')
+const router = express.Router()
 const { PETFINDER_CLIENT_ID, PETFINDER_CLIENT_SECRET, PETFINDER_API_URL } = require('../config');
 
 router.use(express.json())

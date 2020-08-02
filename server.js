@@ -19,7 +19,6 @@ passport.use(localStrategy)
 passport.use(jwtStrategy)
 app.use(morgan('common'))
 app.use(express.json())
-app.use(logErrors)
 app.use(cors())
 app.options('*', cors())
 
@@ -39,6 +38,8 @@ db.once('open', () => console.log('connected to database'))
 app.listen(PORT, () => {
   console.log(`Your server started on port ${PORT}`)
 })
+
+app.use(logErrors)
 
 const logErrors = (err, req, res, next) => {
   console.error(err)

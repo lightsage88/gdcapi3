@@ -2,9 +2,9 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json()
 const {User, Cat} = require('../models')
-const bodyParser = require('body-parser')
 const { JWT_SECRET } = require("../config")
 
 router.get('/', async (req,res) => {

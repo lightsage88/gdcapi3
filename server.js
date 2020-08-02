@@ -39,11 +39,12 @@ app.listen(PORT, () => {
   console.log(`Your server started on port ${PORT}`)
 })
 
-app.use(logErrors)
 
 const logErrors = (err, req, res, next) => {
   console.error(err)
   return res.status(500).json({Error: 'Something went awry'})
 }
+
+app.use(logErrors)
 
 module.exports = {app}
